@@ -31,8 +31,7 @@ song = Song.objects.all()
 choice_f = []
 for x in song:
     choice_f.append((x.id, x.Audio))
-for i in choice_f:
-    print(i)
+ 
 
 
 Songswidget = {

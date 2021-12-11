@@ -13,8 +13,7 @@ urlpatterns = [
     path('recommendedsong/', views.recommended_song, name='recommendedsong'),
     path(r'^singleplaylist/(?P<id>[0-9]+)$',
          views.playlist_detail, name='singleplaylist'),
-    path('chart/', views.chart_view, name='chart'),
-    path('logout/', views.logout, name='logout')
+     path('logout/', views.logout, name='logout')
 
 
 
