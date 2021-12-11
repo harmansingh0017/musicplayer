@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>My Music Player</title>
+    <link href="{% static './style.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- partial:index.partial.html -->
+    <html>
+      <head>
+        <meta charset="utf-8" />
+        <title>Flat music player</title>
+      </head>
+      <body>
+        <div class="sidenav">
+          <img
+            src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG.png"
+            alt=""
+            style="height: 120px; width: 120px; padding: 0px 30px"
+          />
+
+          <h2>Welcome {{ user.Username }}</h2>
+
+          <p>Email : {{ user.Email }}</p>
+          <a style="color: black" href="{% url 'Music:index' %}">Home</a>
+          <a style="color: black" href="{% url 'Music:playlist' %}"
+            >Create Playlist</a
+          >
+          {% for item in playlist %}
+          <a
+            style="color: black"
+            href="{% url 'Music:singleplaylist' id=item.id %}"
+            >{{item.Playlistname}}</a
+          >
+          {% endfor %}
+
+          <div>
+            To logout,
+            <a style="color: black" href="{% url 'Music:logout' %}"
+              >Click Here</a
+            >
+          </div>
+        </div>
+        <div class="main">
+          {% for item in songs %}
+          <div
+            class="card"
+            style="float: left; margin-left:110px; margin-top: 50px; background-color:{{item.color}}"
+          >
+            <br />
+            <br />
+            <img
+              src="{{item.Imageurl.url}}"
+              alt="Avatar"
+              style="width: 100%; height: 300px; border-radius: 100px"
+            />
+            <audio controls>
+              <source src="{{item.Audiofile.url}}" type="audio/mp3" />
+            </audio>
+            <div class="container">
+              <h5><b>{{item.Audio}}</b></h5>
+              <h6>{{item.Artist}}</h6>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </body>
+    </html>
+    <!-- partial -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.7/mediaelement-and-player.min.js"></script>
+  </body>
+</html>

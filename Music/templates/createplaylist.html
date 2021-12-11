@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>My Music Player</title>
+    <link href="{% static './style.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- partial:index.partial.html -->
+    <html>
+      <head>
+        <meta charset="utf-8" />
+        <title>Flat music player</title>
+      </head>
+      <body>
+        <div class="sidenav">
+          <img
+            src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG.png"
+            alt=""
+            style="height: 120px; width: 120px; padding: 0px 30px"
+          />
+
+          <h2>Welcome {{ user.Username }}</h2>
+
+          <p>Email : {{ user.Email }}</p>
+          <a style="color: black" href="{% url 'Music:index' %}">Home</a>
+
+          <a style="color: black" href="{% url 'Music:playlist' %}"
+            >Create Playlist</a
+          >
+          {% for item in playlist %}
+          <a
+            style="color: black"
+            href="{% url 'Music:singleplaylist' id=item.id %}"
+            >{{item.Playlistname}}</a
+          >
+
+          {% endfor %}
+          <div>
+            To logout,
+            <a style="color: black" href="{% url 'Music:logout' %}"
+              >Click Here</a
+            >
+          </div>
+        </div>
+        <div class="main" style="padding: 0px 80px">
+          <form method="POST" class="form-group">
+            {% csrf_token %}
+            <div class="form-group">
+              <label>Playlist Name </label>
+              {{ form.Playlistname }}
+            </div>
+            <div class="form-group">
+              <label>User ID </label>
+              {{ form.User }}
+            </div>
+            <br />
+            <div class="form-group">
+              <label>Select Song</label>
+              {{form.Songs}}
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Create Playlist
+            </button>
+          </form>
+        </div>
+      </body>
+    </html>
+    <!-- partial -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.7/mediaelement-and-player.min.js"></script>
+  </body>
+</html>
