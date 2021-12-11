@@ -65,7 +65,6 @@ def login(request):
         Password = request.POST["Password"]
         if User.objects.filter(Username=Username, Password=Password).exists():
             user = User.objects.get(Username=Username)
-            # This is a session variable and will remain existing as long as you don't delete this manually or clear your browser cache
             request.session["user_id"] = user.id
             Userage = User.objects.get(id=request.session["user_id"])
             age = Userage.Age
@@ -79,7 +78,8 @@ def login(request):
                 gender = 0
 
             model = os.path.join(
-                "C:/Users/harman/MusicFinaltesting1/JupyterNotebook", "forest.pkl"
+                "C:/Users/harman/Documents/GitHub/musicplayer/JupyterNotebook",
+                "forest.pkl",
             )
             model = joblib.load(model)
             data = [age, gender]
