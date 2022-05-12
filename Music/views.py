@@ -84,6 +84,7 @@ def login(request):
             model = joblib.load(model)
             data = [age, gender]
             x = np.array(data).reshape(1, -1)
+
             x = np.array(x, dtype=np.int64)
 
             results = model.predict(x)
@@ -113,8 +114,6 @@ def recommended_song(request):
 
 def get_user(request):
     return User.objects.get(id=request.session["user_id"])
-
-    # do something with your results
 
 
 @user_login_required
