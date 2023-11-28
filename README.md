@@ -1,4 +1,4 @@
-# Music Player Web Application
+# Django and MongoDB Web Application
 
 This is a music player web application with admin and user features built using Python, Django, MongoDB, and Scikit-Learn.
 
